@@ -7,6 +7,8 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.ItemStack;
 
 public final class TrinketRegistry {
+    public static final String ENDER_EYE_ID = "ender_eye";
+
     private static final List<TrinketDefinition> ALL = List.of(
             new TrinketDefinition("bee_wing", TrinketRarity.COMMON, TrinketAbility.SWIFTNESS, EntityType.BEE),
             new TrinketDefinition("skeleton_bone_charm", TrinketRarity.COMMON, TrinketAbility.ARROW_BOOST, EntityType.SKELETON),

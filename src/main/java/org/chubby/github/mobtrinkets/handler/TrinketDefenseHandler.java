@@ -1,5 +1,6 @@
 package org.chubby.github.mobtrinkets.handler;
 
+import java.util.Set;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.player.Player;
@@ -11,7 +12,6 @@ import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import org.chubby.github.mobtrinkets.MobTrinkets;
 import org.chubby.github.mobtrinkets.config.TrinketConfig;
 import org.chubby.github.mobtrinkets.trinket.TrinketAbility;
-import org.chubby.github.mobtrinkets.trinket.TrinketDefinition;
 import org.chubby.github.mobtrinkets.trinket.TrinketEquipment;
 
 @EventBusSubscriber(modid = MobTrinkets.MOD_ID)
@@ -24,28 +24,19 @@ public final class TrinketDefenseHandler {
         if (!(event.getEntity() instanceof Player player)) {
             return;
         }
-        TrinketDefinition definition = TrinketEquipment.active(player);
-        if (definition == null) {
+        Set<TrinketAbility> abilities = TrinketEquipment.data(player).abilities();
+        if (abilities.isEmpty()) {
             return;
         }
         DamageSource source = event.getSource();
-        switch (definition.ability()) {
-            case EXPLOSION_GUARD -> {
-                if (source.is(DamageTypeTags.IS_EXPLOSION)) {
-                    event.setAmount((float) (event.getAmount() * (1.0 - TrinketConfig.EXPLOSION_REDUCTION.get())));
-                }
-            }
-            case FIRE_IMMUNITY -> {
-                if (source.is(DamageTypeTags.IS_FIRE)) {
-                    event.setCanceled(true);
-                }
-            }
-            case FIRE_GUARD -> {
-                if (source.is(DamageTypeTags.IS_FIRE)) {
-                    event.setAmount((float) (event.getAmount() * (1.0 - TrinketConfig.FIRE_REDUCTION.get())));
-                }
-            }
-            default -> {
+        if (abilities.contains(TrinketAbility.EXPLOSION_GUARD) && source.is(DamageTypeTags.IS_EXPLOSION)) {
+            event.setAmount((float) (event.getAmount() * (1.0 - TrinketConfig.EXPLOSION_REDUCTION.get())));
+        }
+        if (source.is(DamageTypeTags.IS_FIRE)) {
+            if (abilities.contains(TrinketAbility.FIRE_IMMUNITY)) {
+                event.setCanceled(true);
+            } else if (abilities.contains(TrinketAbility.FIRE_GUARD)) {
+                event.setAmount((float) (event.getAmount() * (1.0 - TrinketConfig.FIRE_REDUCTION.get())));
             }
         }
     }

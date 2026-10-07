@@ -1,6 +1,8 @@
 package org.chubby.github.mobtrinkets.config;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import net.neoforged.neoforge.common.ModConfigSpec;
 import org.chubby.github.mobtrinkets.trinket.TrinketDefinition;
@@ -10,7 +12,11 @@ public final class TrinketConfig {
     private static final double DEFAULT_DROP_CHANCE = 0.02;
     private static final Map<String, ModConfigSpec.DoubleValue> DROP_CHANCES = new HashMap<>();
 
+    private static final int[] DEFAULT_UNLOCK_LEVELS = {10, 20, 30};
+    private static final List<ModConfigSpec.IntValue> UNLOCK_LEVELS = new ArrayList<>();
+
     public static final ModConfigSpec SPEC;
+    public static final ModConfigSpec.DoubleValue SIGIL_CHANCE;
     public static final ModConfigSpec.DoubleValue DROP_MULTIPLIER;
     public static final ModConfigSpec.DoubleValue LOOTING_BONUS;
     public static final ModConfigSpec.DoubleValue EXPLOSION_REDUCTION;
@@ -37,6 +43,15 @@ public final class TrinketConfig {
                     .defineInRange(definition.id(), DEFAULT_DROP_CHANCE, 0.0, 1.0));
         }
         builder.pop(2);
+
+        builder.push("unlocking");
+        for (int slot = 0; slot < DEFAULT_UNLOCK_LEVELS.length; slot++) {
+            UNLOCK_LEVELS.add(builder.comment("Experience levels needed to unlock trinket slot " + (slot + 1))
+                    .defineInRange("slot" + (slot + 1) + "Levels", DEFAULT_UNLOCK_LEVELS[slot], 0, 100));
+        }
+        SIGIL_CHANCE = builder.comment("Chance that a rare structure chest contains a Trinket Sigil (applies after a data reload)")
+                .defineInRange("sigilChestChance", 0.15, 0.0, 1.0);
+        builder.pop();
 
         builder.push("abilities");
         EXPLOSION_REDUCTION = builder.comment("Creeper Heart: fraction of explosion damage removed")
@@ -66,6 +81,10 @@ public final class TrinketConfig {
     }
 
     private TrinketConfig() {
+    }
+
+    public static int unlockLevels(int unlockedCount) {
+        return UNLOCK_LEVELS.get(unlockedCount).get();
     }
 
     public static double dropChance(TrinketDefinition definition) {

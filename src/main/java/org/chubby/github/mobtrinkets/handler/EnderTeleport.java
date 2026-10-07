@@ -16,8 +16,10 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import org.chubby.github.mobtrinkets.config.TrinketConfig;
+import org.chubby.github.mobtrinkets.registry.ModItems;
 import org.chubby.github.mobtrinkets.trinket.TrinketAbility;
 import org.chubby.github.mobtrinkets.trinket.TrinketEquipment;
+import org.chubby.github.mobtrinkets.trinket.TrinketRegistry;
 
 public final class EnderTeleport {
     private static final double MIN_DISTANCE = 1.0;
@@ -42,7 +44,7 @@ public final class EnderTeleport {
         if (!player.isAlive() || player.isSpectator() || player.isPassenger() || player.isSleeping()) {
             return;
         }
-        Item item = TrinketEquipment.get(player).getItem();
+        Item item = ModItems.byId(TrinketRegistry.ENDER_EYE_ID).get();
         if (player.getCooldowns().isOnCooldown(item)) {
             return;
         }

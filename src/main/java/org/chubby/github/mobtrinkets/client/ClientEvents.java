@@ -11,8 +11,10 @@ import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.chubby.github.mobtrinkets.MobTrinkets;
 import org.chubby.github.mobtrinkets.network.TeleportPayload;
+import org.chubby.github.mobtrinkets.registry.ModItems;
 import org.chubby.github.mobtrinkets.trinket.TrinketAbility;
 import org.chubby.github.mobtrinkets.trinket.TrinketEquipment;
+import org.chubby.github.mobtrinkets.trinket.TrinketRegistry;
 
 @EventBusSubscriber(modid = MobTrinkets.MOD_ID, value = Dist.CLIENT)
 public final class ClientEvents {
@@ -48,7 +50,7 @@ public final class ClientEvents {
         if (!TrinketEquipment.has(player, TrinketAbility.SHORT_TELEPORT)) {
             return;
         }
-        if (player.getCooldowns().isOnCooldown(TrinketEquipment.get(player).getItem())) {
+        if (player.getCooldowns().isOnCooldown(ModItems.byId(TrinketRegistry.ENDER_EYE_ID).get())) {
             return;
         }
         PacketDistributor.sendToServer(new TeleportPayload());

@@ -3,6 +3,7 @@ package org.chubby.github.mobtrinkets.menu;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import org.chubby.github.mobtrinkets.trinket.TrinketData;
 import org.chubby.github.mobtrinkets.trinket.TrinketEquipment;
 
 public class TrinketContainer implements Container {
@@ -14,32 +15,37 @@ public class TrinketContainer implements Container {
 
     @Override
     public int getContainerSize() {
-        return 1;
+        return TrinketData.MAX_SLOTS;
     }
 
     @Override
     public boolean isEmpty() {
-        return TrinketEquipment.get(player).isEmpty();
+        for (int slot = 0; slot < TrinketData.MAX_SLOTS; slot++) {
+            if (!getItem(slot).isEmpty()) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
     public ItemStack getItem(int slot) {
-        return TrinketEquipment.get(player);
+        return TrinketEquipment.get(player, slot);
     }
 
     @Override
     public ItemStack removeItem(int slot, int amount) {
-        return take();
+        return take(slot);
     }
 
     @Override
     public ItemStack removeItemNoUpdate(int slot) {
-        return take();
+        return take(slot);
     }
 
     @Override
     public void setItem(int slot, ItemStack stack) {
-        TrinketEquipment.set(player, stack);
+        TrinketEquipment.setSlot(player, slot, stack);
     }
 
     @Override
@@ -58,16 +64,18 @@ public class TrinketContainer implements Container {
 
     @Override
     public void clearContent() {
-        TrinketEquipment.set(player, ItemStack.EMPTY);
+        for (int slot = 0; slot < TrinketData.MAX_SLOTS; slot++) {
+            TrinketEquipment.setSlot(player, slot, ItemStack.EMPTY);
+        }
     }
 
-    private ItemStack take() {
-        ItemStack current = TrinketEquipment.get(player);
+    private ItemStack take(int slot) {
+        ItemStack current = getItem(slot);
         if (current.isEmpty()) {
             return ItemStack.EMPTY;
         }
         ItemStack removed = current.copy();
-        TrinketEquipment.set(player, ItemStack.EMPTY);
+        TrinketEquipment.setSlot(player, slot, ItemStack.EMPTY);
         return removed;
     }
 }

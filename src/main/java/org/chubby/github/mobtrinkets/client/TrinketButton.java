@@ -8,12 +8,13 @@ import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.chubby.github.mobtrinkets.network.OpenTrinketMenuPayload;
 import org.chubby.github.mobtrinkets.registry.ModItems;
+import org.chubby.github.mobtrinkets.trinket.TrinketRegistry;
 
 public class TrinketButton extends Button {
     private static final int SIZE = 18;
     private static final int ICON_OFFSET = 1;
 
-    private final ItemStack icon = new ItemStack(ModItems.byId("ender_eye").get());
+    private final ItemStack icon = new ItemStack(ModItems.byId(TrinketRegistry.ENDER_EYE_ID).get());
 
     public TrinketButton(int x, int y) {
         super(x, y, SIZE, SIZE, Component.empty(), button -> PacketDistributor.sendToServer(new OpenTrinketMenuPayload()), DEFAULT_NARRATION);

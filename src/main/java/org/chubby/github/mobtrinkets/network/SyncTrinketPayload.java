@@ -3,15 +3,15 @@ package org.chubby.github.mobtrinkets.network;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
-import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 import org.chubby.github.mobtrinkets.MobTrinkets;
 import org.chubby.github.mobtrinkets.registry.ModAttachments;
+import org.chubby.github.mobtrinkets.trinket.TrinketData;
 
-public record SyncTrinketPayload(ItemStack stack) implements CustomPacketPayload {
-    public static final Type<SyncTrinketPayload> TYPE = new Type<>(MobTrinkets.id("sync_trinket"));
+public record SyncTrinketPayload(TrinketData data) implements CustomPacketPayload {
+    public static final Type<SyncTrinketPayload> TYPE = new Type<>(MobTrinkets.id("sync_trinkets"));
     public static final StreamCodec<RegistryFriendlyByteBuf, SyncTrinketPayload> CODEC = StreamCodec.composite(
-            ItemStack.OPTIONAL_STREAM_CODEC, SyncTrinketPayload::stack, SyncTrinketPayload::new);
+            TrinketData.STREAM_CODEC, SyncTrinketPayload::data, SyncTrinketPayload::new);
 
     @Override
     public Type<? extends CustomPacketPayload> type() {
@@ -19,6 +19,6 @@ public record SyncTrinketPayload(ItemStack stack) implements CustomPacketPayload
     }
 
     public static void handle(SyncTrinketPayload payload, IPayloadContext context) {
-        context.player().setData(ModAttachments.EQUIPPED, payload.stack());
+        context.player().setData(ModAttachments.TRINKETS, payload.data());
     }
 }

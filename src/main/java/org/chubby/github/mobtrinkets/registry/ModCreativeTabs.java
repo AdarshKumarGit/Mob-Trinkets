@@ -14,8 +14,11 @@ public final class ModCreativeTabs {
     public static final Supplier<CreativeModeTab> MAIN = TABS.register("main",
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.mobtrinkets"))
-                    .icon(() -> new ItemStack(ModItems.byId("ender_eye").get()))
-                    .displayItems((parameters, output) -> ModItems.all().forEach(item -> output.accept(item.get())))
+                    .icon(() -> new ItemStack(ModItems.SIGIL.get()))
+                    .displayItems((parameters, output) -> {
+                        output.accept(ModItems.SIGIL.get());
+                        ModItems.all().forEach(item -> output.accept(item.get()));
+                    })
                     .build());
 
     private ModCreativeTabs() {

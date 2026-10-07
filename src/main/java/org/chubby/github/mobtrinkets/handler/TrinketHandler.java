@@ -1,5 +1,6 @@
 package org.chubby.github.mobtrinkets.handler;
 
+import java.util.Set;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -10,7 +11,6 @@ import net.neoforged.neoforge.network.PacketDistributor;
 import org.chubby.github.mobtrinkets.MobTrinkets;
 import org.chubby.github.mobtrinkets.network.SyncTrinketPayload;
 import org.chubby.github.mobtrinkets.trinket.TrinketAbility;
-import org.chubby.github.mobtrinkets.trinket.TrinketDefinition;
 import org.chubby.github.mobtrinkets.trinket.TrinketEquipment;
 
 @EventBusSubscriber(modid = MobTrinkets.MOD_ID)
@@ -41,18 +41,18 @@ public final class TrinketHandler {
 
     public static void resync(ServerPlayer player) {
         refresh(player);
-        PacketDistributor.sendToPlayer(player, new SyncTrinketPayload(TrinketEquipment.get(player)));
+        PacketDistributor.sendToPlayer(player, new SyncTrinketPayload(TrinketEquipment.data(player)));
     }
 
     public static void refresh(ServerPlayer player) {
-        TrinketDefinition active = TrinketEquipment.active(player);
+        Set<TrinketAbility> active = TrinketEquipment.data(player).abilities();
         for (TrinketAbility ability : TrinketAbility.attributeAbilities()) {
             AttributeInstance instance = player.getAttribute(ability.attribute());
             if (instance == null) {
                 continue;
             }
             instance.removeModifier(ability.modifierId());
-            if (active != null && active.ability() == ability) {
+            if (active.contains(ability)) {
                 instance.addTransientModifier(new AttributeModifier(ability.modifierId(), ability.strength(), ability.operation()));
             }
         }

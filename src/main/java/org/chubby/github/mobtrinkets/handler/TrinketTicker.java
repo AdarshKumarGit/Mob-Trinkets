@@ -1,5 +1,6 @@
 package org.chubby.github.mobtrinkets.handler;
 
+import java.util.Set;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
@@ -9,7 +10,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import org.chubby.github.mobtrinkets.MobTrinkets;
-import org.chubby.github.mobtrinkets.trinket.TrinketDefinition;
+import org.chubby.github.mobtrinkets.trinket.TrinketAbility;
 import org.chubby.github.mobtrinkets.trinket.TrinketEquipment;
 
 @EventBusSubscriber(modid = MobTrinkets.MOD_ID)
@@ -29,16 +30,18 @@ public final class TrinketTicker {
     @SubscribeEvent
     public static void onPlayerTick(PlayerTickEvent.Pre event) {
         Player player = event.getEntity();
-        TrinketDefinition definition = TrinketEquipment.active(player);
-        if (definition == null || player.isSpectator()) {
+        Set<TrinketAbility> abilities = TrinketEquipment.data(player).abilities();
+        if (abilities.isEmpty() || player.isSpectator()) {
             return;
         }
-        switch (definition.ability()) {
-            case SPIDER_CLIMB -> climb(player);
-            case SLOW_FALL -> slowFall(player);
-            case FIRE_IMMUNITY -> keepExtinguished(player);
-            default -> {
-            }
+        if (abilities.contains(TrinketAbility.SPIDER_CLIMB)) {
+            climb(player);
+        }
+        if (abilities.contains(TrinketAbility.SLOW_FALL)) {
+            slowFall(player);
+        }
+        if (abilities.contains(TrinketAbility.FIRE_IMMUNITY)) {
+            keepExtinguished(player);
         }
     }
 
