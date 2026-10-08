@@ -9,9 +9,9 @@ import org.chubby.github.mobtrinkets.registry.ModMenus;
 import org.chubby.github.mobtrinkets.trinket.TrinketData;
 
 public class TrinketMenu extends AbstractContainerMenu {
-    public static final int SLOT_X = 18;
-    public static final int SLOT_Y = 18;
-    public static final int SLOT_SPACING = 21;
+    public static final int SLOT_START_X = 54;
+    public static final int SLOT_Y = 36;
+    public static final int SLOT_SPACING = 26;
 
     private static final int INVENTORY_START = TrinketData.MAX_SLOTS;
     private static final int INVENTORY_END = INVENTORY_START + 36;
@@ -24,7 +24,7 @@ public class TrinketMenu extends AbstractContainerMenu {
         super(ModMenus.TRINKET.get(), containerId);
         TrinketContainer container = new TrinketContainer(inventory.player);
         for (int slot = 0; slot < TrinketData.MAX_SLOTS; slot++) {
-            addSlot(new TrinketSlot(container, inventory.player, slot, SLOT_X, SLOT_Y + slot * SLOT_SPACING));
+            addSlot(new TrinketSlot(container, inventory.player, slot, slotX(slot), SLOT_Y));
         }
         for (int row = 0; row < 3; row++) {
             for (int column = 0; column < 9; column++) {
@@ -34,6 +34,10 @@ public class TrinketMenu extends AbstractContainerMenu {
         for (int column = 0; column < 9; column++) {
             addSlot(new Slot(inventory, column, INVENTORY_X + column * SLOT_SIZE, HOTBAR_Y));
         }
+    }
+
+    public static int slotX(int slot) {
+        return SLOT_START_X + slot * SLOT_SPACING;
     }
 
     @Override

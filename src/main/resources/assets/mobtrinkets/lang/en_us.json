@@ -32,7 +32,6 @@
   "tooltip.mobtrinkets.fire_guard": "Reduces fire damage by %s%%.",
   "gui.mobtrinkets.title": "Mob Trinkets",
   "gui.mobtrinkets.open": "Mob Trinkets",
-  "gui.mobtrinkets.empty": "Empty",
   "item.mobtrinkets.trinket_sigil": "Trinket Sigil",
   "tooltip.mobtrinkets.sigil": "Right-click to unlock a new trinket slot.",
   "tooltip.mobtrinkets.sigil_cost": "Costs %s, %s and %s levels for slots 1, 2 and 3.",
@@ -40,5 +39,5 @@
   "message.mobtrinkets.not_enough_levels": "You need %s experience levels to use this sigil.",
   "message.mobtrinkets.all_unlocked": "All trinket slots are already unlocked.",
   "gui.mobtrinkets.locked": "Locked",
-  "gui.mobtrinkets.unlock_hint": "Use a Sigil (%s levels)"
+  "gui.mobtrinkets.unlock_hint": "Use a Trinket Sigil (%s levels)"
 }

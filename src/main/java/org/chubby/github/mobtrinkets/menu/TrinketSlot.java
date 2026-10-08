@@ -20,9 +20,17 @@ public class TrinketSlot extends Slot {
         return TrinketEquipment.canEquip(player, trinketIndex, stack);
     }
 
+    public boolean isUnlocked() {
+        return TrinketEquipment.data(player).isUnlocked(trinketIndex);
+    }
+
+    public int trinketIndex() {
+        return trinketIndex;
+    }
+
     @Override
     public boolean mayPickup(Player picker) {
-        return TrinketEquipment.data(player).isUnlocked(trinketIndex);
+        return isUnlocked();
     }
 
     @Override
