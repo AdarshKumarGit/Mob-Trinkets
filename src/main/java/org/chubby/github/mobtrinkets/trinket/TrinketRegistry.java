@@ -10,18 +10,18 @@ public final class TrinketRegistry {
     public static final String ENDER_EYE_ID = "ender_eye";
 
     private static final List<TrinketDefinition> ALL = List.of(
-            new TrinketDefinition("bee_wing", TrinketRarity.COMMON, TrinketAbility.SWIFTNESS, EntityType.BEE),
-            new TrinketDefinition("skeleton_bone_charm", TrinketRarity.COMMON, TrinketAbility.ARROW_BOOST, EntityType.SKELETON),
-            new TrinketDefinition("goat_horn_charm", TrinketRarity.COMMON, TrinketAbility.KNOCKBACK_BOOST, EntityType.GOAT),
-            new TrinketDefinition("drowned_pearl", TrinketRarity.COMMON, TrinketAbility.SWIM_SPEED, EntityType.DROWNED),
-            new TrinketDefinition("slime_heart", TrinketRarity.UNCOMMON, TrinketAbility.HIGH_JUMP, EntityType.SLIME),
-            new TrinketDefinition("phantom_wing", TrinketRarity.UNCOMMON, TrinketAbility.SLOW_FALL, EntityType.PHANTOM),
-            new TrinketDefinition("guardian_eye", TrinketRarity.UNCOMMON, TrinketAbility.WATER_BREATHING, EntityType.GUARDIAN),
-            new TrinketDefinition("creeper_heart", TrinketRarity.UNCOMMON, TrinketAbility.EXPLOSION_GUARD, EntityType.CREEPER),
-            new TrinketDefinition("blaze_core", TrinketRarity.RARE, TrinketAbility.FIRE_IMMUNITY, EntityType.BLAZE),
-            new TrinketDefinition("spider_fang", TrinketRarity.RARE, TrinketAbility.SPIDER_CLIMB, EntityType.SPIDER),
-            new TrinketDefinition("magma_core", TrinketRarity.RARE, TrinketAbility.FIRE_GUARD, EntityType.MAGMA_CUBE),
-            new TrinketDefinition("ender_eye", TrinketRarity.EPIC, TrinketAbility.SHORT_TELEPORT, EntityType.ENDERMAN)
+            new TrinketDefinition("bee_wing", TrinketRarity.COMMON, TrinketAbility.SWIFTNESS, EntityType.BEE, TrinketSkill.POLLEN_DASH, TrinketSkill.HONEY_SHIELD),
+            new TrinketDefinition("skeleton_bone_charm", TrinketRarity.COMMON, TrinketAbility.ARROW_BOOST, EntityType.SKELETON, TrinketSkill.BONE_ARMOR, TrinketSkill.RATTLE),
+            new TrinketDefinition("goat_horn_charm", TrinketRarity.COMMON, TrinketAbility.KNOCKBACK_BOOST, EntityType.GOAT, TrinketSkill.RAM_CHARGE, TrinketSkill.HORN_BLAST),
+            new TrinketDefinition("drowned_pearl", TrinketRarity.COMMON, TrinketAbility.SWIM_SPEED, EntityType.DROWNED, TrinketSkill.TIDAL_SURGE, TrinketSkill.RIPTIDE_BURST),
+            new TrinketDefinition("slime_heart", TrinketRarity.UNCOMMON, TrinketAbility.HIGH_JUMP, EntityType.SLIME, TrinketSkill.SLIME_BOUNCE, TrinketSkill.SLIME_WAVE),
+            new TrinketDefinition("phantom_wing", TrinketRarity.UNCOMMON, TrinketAbility.SLOW_FALL, EntityType.PHANTOM, TrinketSkill.GLIDE, TrinketSkill.HAUNT),
+            new TrinketDefinition("guardian_eye", TrinketRarity.UNCOMMON, TrinketAbility.WATER_BREATHING, EntityType.GUARDIAN, TrinketSkill.PRISMATIC_BEAM, TrinketSkill.GUARDIANS_WARD),
+            new TrinketDefinition("creeper_heart", TrinketRarity.UNCOMMON, TrinketAbility.EXPLOSION_GUARD, EntityType.CREEPER, TrinketSkill.VOLATILE_BURST, TrinketSkill.CHAIN_DETONATION),
+            new TrinketDefinition("blaze_core", TrinketRarity.RARE, TrinketAbility.FIRE_IMMUNITY, EntityType.BLAZE, TrinketSkill.FLAME_LASH, TrinketSkill.INFERNO_RING),
+            new TrinketDefinition("spider_fang", TrinketRarity.RARE, TrinketAbility.SPIDER_CLIMB, EntityType.SPIDER, TrinketSkill.VENOM_STRIKE, TrinketSkill.SILK_SNARE),
+            new TrinketDefinition("magma_core", TrinketRarity.RARE, TrinketAbility.FIRE_GUARD, EntityType.MAGMA_CUBE, TrinketSkill.MAGMA_SHIELD, TrinketSkill.ERUPTION),
+            new TrinketDefinition("ender_eye", TrinketRarity.EPIC, TrinketAbility.SHORT_TELEPORT, EntityType.ENDERMAN, TrinketSkill.VOID_PULL, TrinketSkill.PHASE_SHIFT)
     );
 
     private static final Map<EntityType<?>, TrinketDefinition> BY_ENTITY = new HashMap<>();

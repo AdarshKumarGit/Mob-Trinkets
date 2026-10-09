@@ -6,6 +6,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import org.chubby.github.mobtrinkets.MobTrinkets;
 import org.chubby.github.mobtrinkets.trinket.TrinketData;
+import org.chubby.github.mobtrinkets.trinket.TrinketMastery;
 
 public final class ModAttachments {
     public static final DeferredRegister<AttachmentType<?>> ATTACHMENTS = DeferredRegister.create(NeoForgeRegistries.ATTACHMENT_TYPES, MobTrinkets.MOD_ID);
@@ -13,6 +14,12 @@ public final class ModAttachments {
     public static final Supplier<AttachmentType<TrinketData>> TRINKETS = ATTACHMENTS.register("trinkets",
             () -> AttachmentType.builder(() -> TrinketData.EMPTY)
                     .serialize(TrinketData.CODEC)
+                    .copyOnDeath()
+                    .build());
+
+    public static final Supplier<AttachmentType<TrinketMastery>> MASTERY = ATTACHMENTS.register("mastery",
+            () -> AttachmentType.builder(() -> TrinketMastery.EMPTY)
+                    .serialize(TrinketMastery.CODEC)
                     .copyOnDeath()
                     .build());
 

@@ -16,6 +16,12 @@ public final class TrinketConfig {
     private static final List<ModConfigSpec.IntValue> UNLOCK_LEVELS = new ArrayList<>();
 
     public static final ModConfigSpec SPEC;
+    public static final ModConfigSpec.IntValue TIER2_POINTS;
+    public static final ModConfigSpec.IntValue TIER3_POINTS;
+    public static final ModConfigSpec.IntValue SOURCE_KILL_POINTS;
+    public static final ModConfigSpec.DoubleValue TIER2_SCALE;
+    public static final ModConfigSpec.DoubleValue TIER3_SCALE;
+    public static final ModConfigSpec.DoubleValue SKILL_COOLDOWN_MULTIPLIER;
     public static final ModConfigSpec.DoubleValue SIGIL_CHANCE;
     public static final ModConfigSpec.DoubleValue DROP_MULTIPLIER;
     public static final ModConfigSpec.DoubleValue LOOTING_BONUS;
@@ -51,6 +57,21 @@ public final class TrinketConfig {
         }
         SIGIL_CHANCE = builder.comment("Chance that a rare structure chest contains a Trinket Sigil (applies after a data reload)")
                 .defineInRange("sigilChestChance", 0.15, 0.0, 1.0);
+        builder.pop();
+
+        builder.push("mastery");
+        TIER2_POINTS = builder.comment("Mastery points needed for Tier II (unlocks the first skill)")
+                .defineInRange("tier2Points", 40, 1, 100000);
+        TIER3_POINTS = builder.comment("Mastery points needed for Tier III (unlocks the second skill)")
+                .defineInRange("tier3Points", 150, 1, 100000);
+        SOURCE_KILL_POINTS = builder.comment("Points for killing the mob a trinket drops from (other hostile mobs give 1)")
+                .defineInRange("sourceKillPoints", 3, 1, 100);
+        TIER2_SCALE = builder.comment("Passive strength multiplier at Tier II")
+                .defineInRange("tier2Scale", 1.5, 1.0, 5.0);
+        TIER3_SCALE = builder.comment("Passive strength multiplier at Tier III")
+                .defineInRange("tier3Scale", 2.0, 1.0, 5.0);
+        SKILL_COOLDOWN_MULTIPLIER = builder.comment("Multiplier applied to every skill cooldown")
+                .defineInRange("skillCooldownMultiplier", 1.0, 0.0, 10.0);
         builder.pop();
 
         builder.push("abilities");

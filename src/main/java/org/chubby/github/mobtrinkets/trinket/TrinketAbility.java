@@ -29,6 +29,8 @@ public enum TrinketAbility {
 
     private static final List<TrinketAbility> ATTRIBUTE_ABILITIES = Arrays.stream(values()).filter(ability -> ability.attribute != null).toList();
     private static final double PERCENT = 100.0;
+    private static final double MAX_PERCENT_STRENGTH = 0.9;
+    private static final double MAX_EFFICIENCY = 1.0;
 
     private final String key;
     private final Holder<Attribute> attribute;
@@ -72,6 +74,14 @@ public enum TrinketAbility {
 
     public double strength() {
         return strength.getAsDouble();
+    }
+
+    public double strength(double scale) {
+        double value = strength.getAsDouble() * scale;
+        if (percentage) {
+            return Math.min(value, MAX_PERCENT_STRENGTH);
+        }
+        return this == SWIM_SPEED ? Math.min(value, MAX_EFFICIENCY) : value;
     }
 
     public MutableComponent description() {

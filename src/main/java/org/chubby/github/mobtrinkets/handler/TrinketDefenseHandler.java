@@ -10,9 +10,9 @@ import net.neoforged.neoforge.event.entity.living.LivingBreatheEvent;
 import net.neoforged.neoforge.event.entity.living.LivingFallEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import org.chubby.github.mobtrinkets.MobTrinkets;
-import org.chubby.github.mobtrinkets.config.TrinketConfig;
 import org.chubby.github.mobtrinkets.trinket.TrinketAbility;
 import org.chubby.github.mobtrinkets.trinket.TrinketEquipment;
+import org.chubby.github.mobtrinkets.trinket.TrinketMastery;
 
 @EventBusSubscriber(modid = MobTrinkets.MOD_ID)
 public final class TrinketDefenseHandler {
@@ -30,13 +30,13 @@ public final class TrinketDefenseHandler {
         }
         DamageSource source = event.getSource();
         if (abilities.contains(TrinketAbility.EXPLOSION_GUARD) && source.is(DamageTypeTags.IS_EXPLOSION)) {
-            event.setAmount((float) (event.getAmount() * (1.0 - TrinketConfig.EXPLOSION_REDUCTION.get())));
+            event.setAmount((float) (event.getAmount() * (1.0 - TrinketAbility.EXPLOSION_GUARD.strength(TrinketMastery.scale(player, TrinketAbility.EXPLOSION_GUARD)))));
         }
         if (source.is(DamageTypeTags.IS_FIRE)) {
             if (abilities.contains(TrinketAbility.FIRE_IMMUNITY)) {
                 event.setCanceled(true);
             } else if (abilities.contains(TrinketAbility.FIRE_GUARD)) {
-                event.setAmount((float) (event.getAmount() * (1.0 - TrinketConfig.FIRE_REDUCTION.get())));
+                event.setAmount((float) (event.getAmount() * (1.0 - TrinketAbility.FIRE_GUARD.strength(TrinketMastery.scale(player, TrinketAbility.FIRE_GUARD)))));
             }
         }
     }

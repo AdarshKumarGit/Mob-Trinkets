@@ -9,9 +9,12 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.chubby.github.mobtrinkets.MobTrinkets;
+import org.chubby.github.mobtrinkets.network.SyncMasteryPayload;
 import org.chubby.github.mobtrinkets.network.SyncTrinketPayload;
+import org.chubby.github.mobtrinkets.registry.ModAttachments;
 import org.chubby.github.mobtrinkets.trinket.TrinketAbility;
 import org.chubby.github.mobtrinkets.trinket.TrinketEquipment;
+import org.chubby.github.mobtrinkets.trinket.TrinketMastery;
 
 @EventBusSubscriber(modid = MobTrinkets.MOD_ID)
 public final class TrinketHandler {
@@ -42,6 +45,7 @@ public final class TrinketHandler {
     public static void resync(ServerPlayer player) {
         refresh(player);
         PacketDistributor.sendToPlayer(player, new SyncTrinketPayload(TrinketEquipment.data(player)));
+        PacketDistributor.sendToPlayer(player, new SyncMasteryPayload(player.getData(ModAttachments.MASTERY)));
     }
 
     public static void refresh(ServerPlayer player) {
@@ -53,7 +57,7 @@ public final class TrinketHandler {
             }
             instance.removeModifier(ability.modifierId());
             if (active.contains(ability)) {
-                instance.addTransientModifier(new AttributeModifier(ability.modifierId(), ability.strength(), ability.operation()));
+                instance.addTransientModifier(new AttributeModifier(ability.modifierId(), ability.strength(TrinketMastery.scale(player, ability)), ability.operation()));
             }
         }
     }

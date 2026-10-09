@@ -18,6 +18,8 @@ public final class ModNetworking {
         PayloadRegistrar registrar = event.registrar(PROTOCOL_VERSION);
         registrar.playToClient(SyncTrinketPayload.TYPE, SyncTrinketPayload.CODEC, SyncTrinketPayload::handle);
         registrar.playToServer(OpenTrinketMenuPayload.TYPE, OpenTrinketMenuPayload.CODEC, OpenTrinketMenuPayload::handle);
+        registrar.playToClient(SyncMasteryPayload.TYPE, SyncMasteryPayload.CODEC, SyncMasteryPayload::handle);
+        registrar.playToServer(UseSkillPayload.TYPE, UseSkillPayload.CODEC, UseSkillPayload::handle);
         registrar.playToServer(TeleportPayload.TYPE, TeleportPayload.CODEC, TeleportPayload::handle);
     }
 }

@@ -11,9 +11,9 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import org.chubby.github.mobtrinkets.MobTrinkets;
-import org.chubby.github.mobtrinkets.config.TrinketConfig;
 import org.chubby.github.mobtrinkets.trinket.TrinketAbility;
 import org.chubby.github.mobtrinkets.trinket.TrinketEquipment;
+import org.chubby.github.mobtrinkets.trinket.TrinketMastery;
 
 @EventBusSubscriber(modid = MobTrinkets.MOD_ID)
 public final class TrinketOffenseHandler {
@@ -32,7 +32,7 @@ public final class TrinketOffenseHandler {
             return;
         }
         if (arrow.getOwner() instanceof ServerPlayer player && TrinketEquipment.has(player, TrinketAbility.ARROW_BOOST)) {
-            arrow.setBaseDamage(arrow.getBaseDamage() * (1.0 + TrinketConfig.ARROW_DAMAGE_BONUS.get()));
+            arrow.setBaseDamage(arrow.getBaseDamage() * (1.0 + TrinketAbility.ARROW_BOOST.strength(TrinketMastery.scale(player, TrinketAbility.ARROW_BOOST))));
         }
     }
 
@@ -46,6 +46,7 @@ public final class TrinketOffenseHandler {
             return;
         }
         float yaw = player.getYRot() * DEGREES_TO_RADIANS;
-        event.getEntity().knockback(TrinketConfig.KNOCKBACK_LEVELS.get() * KNOCKBACK_PER_LEVEL, Mth.sin(yaw), -Mth.cos(yaw));
+        double levels = TrinketAbility.KNOCKBACK_BOOST.strength(TrinketMastery.scale(player, TrinketAbility.KNOCKBACK_BOOST));
+        event.getEntity().knockback(levels * KNOCKBACK_PER_LEVEL, Mth.sin(yaw), -Mth.cos(yaw));
     }
 }

@@ -31,6 +31,20 @@ public final class TrinketEquipment {
         return data(player).abilities().contains(ability);
     }
 
+    public static TrinketDefinition equippedDefinition(Player player, TrinketAbility ability) {
+        TrinketData data = data(player);
+        if (!data.abilities().contains(ability)) {
+            return null;
+        }
+        for (ItemStack stack : data.stacks()) {
+            TrinketDefinition definition = TrinketRegistry.forStack(stack);
+            if (definition != null && definition.ability() == ability) {
+                return definition;
+            }
+        }
+        return null;
+    }
+
     public static boolean canEquip(Player player, int slot, ItemStack stack) {
         TrinketData data = data(player);
         if (!data.isUnlocked(slot)) {
