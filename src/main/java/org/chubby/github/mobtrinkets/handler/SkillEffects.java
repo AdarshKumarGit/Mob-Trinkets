@@ -79,6 +79,10 @@ public final class SkillEffects {
     private static void sound(ServerPlayer player, SoundEvent event, float pitch) {
         player.level().playSound(null, player.getX(), player.getY(), player.getZ(), event, SoundSource.PLAYERS, 1.0F, pitch);
     }
+	
+	private static void sound(ServerPlayer player, Holder<SoundEvent> event, float pitch) {
+    sound(player, event.value(), pitch);
+}
 
     private static void dash(ServerPlayer player, double speed, double lift) {
         Vec3 look = player.getLookAngle();
