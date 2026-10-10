@@ -8,6 +8,7 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import org.chubby.github.mobtrinkets.command.SetTrinketMasteryCommand;
+import org.chubby.github.mobtrinkets.config.HudConfig;
 import org.chubby.github.mobtrinkets.config.TrinketConfig;
 import org.chubby.github.mobtrinkets.registry.*;
 
@@ -24,6 +25,7 @@ public final class MobTrinkets {
         ModBlockEntities.BLOCK_ENTITIES.register(modEventBus);
         NeoForge.EVENT_BUS.addListener(this::registerCommands);
         container.registerConfig(ModConfig.Type.COMMON, TrinketConfig.SPEC);
+        container.registerConfig(ModConfig.Type.CLIENT, HudConfig.SPEC);
     }
     public  void registerCommands(RegisterCommandsEvent event)
     {

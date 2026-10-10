@@ -107,5 +107,19 @@
   "screen.mobtrinkets.assembler.input": "Input",
   "screen.mobtrinkets.assembler.output": "Output",
   "screen.mobtrinkets.assembler.gamble": "Gamble",
-  "screen.mobtrinkets.assembler.progress": "%s%%"
+  "screen.mobtrinkets.assembler.progress": "%s%%",
+  "gui.mobtrinkets.hud_edit": "HUD",
+  "gui.mobtrinkets.hud_title": "Drag the trinket overlay to move it",
+  "gui.mobtrinkets.hud_toggle": "Overlay: %s",
+  "gui.mobtrinkets.hud_on": "On",
+  "gui.mobtrinkets.hud_off": "Off",
+  "gui.mobtrinkets.hud_layout": "Layout: %s",
+  "gui.mobtrinkets.hud_vertical": "Vertical",
+  "gui.mobtrinkets.hud_horizontal": "Horizontal",
+  "gui.mobtrinkets.hud_smaller": "Smaller",
+  "gui.mobtrinkets.hud_larger": "Larger",
+  "gui.mobtrinkets.hud_reset": "Reset",
+  "gui.mobtrinkets.hud_done": "Done",
+  "gui.mobtrinkets.hud_scale": "Scale: %sx",
+  "key.mobtrinkets.hud_edit": "Edit Trinket Overlay"
 }
