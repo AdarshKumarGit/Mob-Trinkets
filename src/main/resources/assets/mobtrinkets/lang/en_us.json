@@ -100,5 +100,12 @@
   "key.categories.mobtrinkets": "Mob Trinkets",
   "key.mobtrinkets.skill_slot_1": "Trinket Slot 1 Skill (Shift for second)",
   "key.mobtrinkets.skill_slot_2": "Trinket Slot 2 Skill (Shift for second)",
-  "key.mobtrinkets.skill_slot_3": "Trinket Slot 3 Skill (Shift for second)"
+  "key.mobtrinkets.skill_slot_3": "Trinket Slot 3 Skill (Shift for second)",
+  "screen.mobtrinkets.assembler.rare": "Rare find: Mob Trinkets",
+  "block.mobtrinkets.assembler": "Assembler",
+  "item.mobtrinkets.dusty_fragment": "Dusty Fragment",
+  "screen.mobtrinkets.assembler.input": "Input",
+  "screen.mobtrinkets.assembler.output": "Output",
+  "screen.mobtrinkets.assembler.gamble": "Gamble",
+  "screen.mobtrinkets.assembler.progress": "%s%%"
 }

@@ -23,5 +23,6 @@ public final class ClientSetup {
     @SubscribeEvent
     public static void registerScreens(RegisterMenuScreensEvent event) {
         event.register(ModMenus.TRINKET.get(), TrinketScreen::new);
+        event.register(ModMenus.ASSEMBLER.get(), AssemblerScreen::new);
     }
 }

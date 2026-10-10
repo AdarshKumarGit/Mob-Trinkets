@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "top": "mobtrinkets:block/assembler_top",
+    "front": "mobtrinkets:block/assembler_front",
+    "side": "mobtrinkets:block/assembler_side"
+  }
+}

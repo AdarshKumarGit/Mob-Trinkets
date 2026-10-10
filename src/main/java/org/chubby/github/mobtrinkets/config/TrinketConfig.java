@@ -55,7 +55,7 @@ public final class TrinketConfig {
             UNLOCK_LEVELS.add(builder.comment("Experience levels needed to unlock trinket slot " + (slot + 1))
                     .defineInRange("slot" + (slot + 1) + "Levels", DEFAULT_UNLOCK_LEVELS[slot], 0, 100));
         }
-        SIGIL_CHANCE = builder.comment("Chance that a rare structure chest contains a Trinket Sigil (applies after a data reload)")
+        SIGIL_CHANCE = builder.comment("Chance that a rare structure chest contains a Trinket Sigil")
                 .defineInRange("sigilChestChance", 0.15, 0.0, 1.0);
         builder.pop();
 

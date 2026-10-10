@@ -83,6 +83,7 @@ public class TrinketScreen extends AbstractContainerScreen<TrinketMenu> {
     @Override
     protected void renderLabels(GuiGraphics graphics, int mouseX, int mouseY) {
         super.renderLabels(graphics, mouseX, mouseY);
+        inventoryLabelY = -100;
         TrinketData data = TrinketEquipment.data(minecraft.player);
         if (hoveredSlot instanceof TrinketSlot slot && slot.isUnlocked()) {
             viewSlot = slot.trinketIndex();

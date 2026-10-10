@@ -3,6 +3,9 @@ package org.chubby.github.mobtrinkets.registry;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -17,6 +20,8 @@ public final class ModItems {
 
     public static final DeferredItem<TrinketSigilItem> SIGIL = ITEMS.registerItem("trinket_sigil",
             properties -> new TrinketSigilItem(properties.stacksTo(16).rarity(Rarity.EPIC)));
+    public static final DeferredItem<Item> DUSTY_FRAGMENT = ITEMS.registerItem("dusty_fragment", (properties) -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> ASSEMBLER = ITEMS.registerItem("assembler", (properties) -> new BlockItem(ModBlocks.ASSEMBLER_BLOCK.get(),new Item.Properties()));
 
     private static final Map<String, DeferredItem<TrinketItem>> TRINKETS = new LinkedHashMap<>();
 

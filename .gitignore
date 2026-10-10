@@ -3,3 +3,6 @@ build/
 run/
 .idea/
 *.iml
+gradle
+gradlew
+gradlew.bat

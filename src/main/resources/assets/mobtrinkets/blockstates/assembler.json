@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "mobtrinkets:block/assembler" },
+    "facing=east": { "model": "mobtrinkets:block/assembler", "y": 90 },
+    "facing=south": { "model": "mobtrinkets:block/assembler", "y": 180 },
+    "facing=west": { "model": "mobtrinkets:block/assembler", "y": 270 }
+  }
+}
