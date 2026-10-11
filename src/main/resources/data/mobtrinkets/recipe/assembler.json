@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "show_notification": true,
+  "category": "redstone",
+  "pattern": [
+    "DBD",
+    "III",
+    "III"
+  ],
+  "key": {
+    "D": {
+      "item": "minecraft:purple_dye"
+    },
+    "B": {
+      "item": "minecraft:brush"
+    },
+    "I": {
+      "item": "minecraft:iron_block"
+    }
+  },
+  "result": {
+    "id": "mobtrinkets:assembler",
+    "count": 1
+  }
+}

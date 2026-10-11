@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.ItemStack;
+import org.chubby.github.mobtrinkets.item.TrinketItem;
 
 public final class TrinketRegistry {
     public static final String ENDER_EYE_ID = "ender_eye";

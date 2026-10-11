@@ -10,9 +10,9 @@ import net.minecraft.world.item.Rarity;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.chubby.github.mobtrinkets.MobTrinkets;
+import org.chubby.github.mobtrinkets.item.TrinketItem;
+import org.chubby.github.mobtrinkets.item.TrinketSigilItem;
 import org.chubby.github.mobtrinkets.trinket.TrinketDefinition;
-import org.chubby.github.mobtrinkets.trinket.TrinketSigilItem;
-import org.chubby.github.mobtrinkets.trinket.TrinketItem;
 import org.chubby.github.mobtrinkets.trinket.TrinketRegistry;
 
 public final class ModItems {
@@ -20,8 +20,9 @@ public final class ModItems {
 
     public static final DeferredItem<TrinketSigilItem> SIGIL = ITEMS.registerItem("trinket_sigil",
             properties -> new TrinketSigilItem(properties.stacksTo(16).rarity(Rarity.EPIC)));
-    public static final DeferredItem<Item> DUSTY_FRAGMENT = ITEMS.registerItem("dusty_fragment", (properties) -> new Item(new Item.Properties()));
-    public static final DeferredItem<Item> ASSEMBLER = ITEMS.registerItem("assembler", (properties) -> new BlockItem(ModBlocks.ASSEMBLER_BLOCK.get(),new Item.Properties()));
+    public static final DeferredItem<Item> DUSTY_FRAGMENT = ITEMS.registerItem("dusty_fragment", Item::new);
+    public static final DeferredItem<Item> ASSEMBLER = ITEMS.registerItem("assembler",
+            properties -> new BlockItem(ModBlocks.ASSEMBLER.get(), properties));
 
     private static final Map<String, DeferredItem<TrinketItem>> TRINKETS = new LinkedHashMap<>();
 

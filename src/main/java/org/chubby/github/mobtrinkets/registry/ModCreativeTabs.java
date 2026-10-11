@@ -18,6 +18,8 @@ public final class ModCreativeTabs {
                     .displayItems((parameters, output) -> {
                         output.accept(ModItems.SIGIL.get());
                         ModItems.all().forEach(item -> output.accept(item.get()));
+                        output.accept(ModItems.DUSTY_FRAGMENT.get());
+                        output.accept(ModItems.ASSEMBLER.get());
                     })
                     .build());
 

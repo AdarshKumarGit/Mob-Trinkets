@@ -12,6 +12,8 @@ public final class ClientKeys {
             new KeyMapping("key.mobtrinkets.skill_slot_3", InputConstants.KEY_V, CATEGORY)
     };
 
+    public static final KeyMapping HUD_EDIT = new KeyMapping("key.mobtrinkets.hud_edit", InputConstants.KEY_K, CATEGORY);
+
     private ClientKeys() {
     }
 }

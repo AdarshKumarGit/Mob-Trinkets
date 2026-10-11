@@ -5,7 +5,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import org.chubby.github.mobtrinkets.handler.TrinketHandler;
 import org.chubby.github.mobtrinkets.registry.ModAttachments;
 
 public final class TrinketEquipment {
@@ -89,7 +88,7 @@ public final class TrinketEquipment {
     private static void store(Player player, TrinketData data) {
         player.setData(ModAttachments.TRINKETS, data);
         if (player instanceof ServerPlayer serverPlayer) {
-            TrinketHandler.resync(serverPlayer);
+            TrinketSync.resync(serverPlayer);
         }
     }
 }

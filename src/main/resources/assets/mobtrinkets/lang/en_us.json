@@ -121,5 +121,7 @@
   "gui.mobtrinkets.hud_reset": "Reset",
   "gui.mobtrinkets.hud_done": "Done",
   "gui.mobtrinkets.hud_scale": "Scale: %sx",
-  "key.mobtrinkets.hud_edit": "Edit Trinket Overlay"
+  "key.mobtrinkets.hud_edit": "Edit Trinket Overlay",
+  "gui.mobtrinkets.beam_charging": "Charging",
+  "gui.mobtrinkets.beam_firing": "Firing"
 }
